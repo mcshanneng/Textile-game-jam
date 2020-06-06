@@ -1,0 +1,61 @@
+/*******
+Code for the Textile Game Controller Jam by Social Body Lab, Dames Making Game, & Game Play Lab. 
+May 30, 2020 - June 6, 2020. 
+This is code follows along the "How to Make an E-Textile Digital Switch" here: https://youtu.be/OHO1NxV-ebw 
+The code contains 1 digital switch which lights up the LED ring when activated. 
+Circuit Playground Library: 
+https://learn.adafruit.com/circuit-playground-lesson-number-0
+*********/
+
+/**Must include the Adafruit_CircuitPlayground.h**/
+
+#include <Adafruit_CircuitPlayground.h>
+
+int buttonVal; // Reads the input of the switch, returns either a 0 or 1
+int buttonPin = 19; // The physical pin that e-textile material is connected to 
+int analogPin = 11;    // select the input pin for the potentiometer
+int analogValue;  // variable to store the value coming from the sensor
+int analogMin = 1023;        // minimum sensor value
+int analogMax = 0;    // maximum sensor vlalue
+int colour;     // value for brightness
+
+
+void setup() {
+
+  Serial.begin(9600); // Starting the serial monitor
+  CircuitPlayground.begin(); // Initiating the Circuit Playground
+  pinMode(buttonPin, INPUT_PULLUP); // Indicating the type of input for the pin  used
+    while (millis() < 5000) {
+    analogValue = analogRead(analogPin); // Read all of the incoming analog values
+    Serial.println(analogValue); // print out these values
+
+    // record the maximum sensor value
+    if (analogValue > analogMax) { // if the value that is read is higher than the last highest value
+      analogMax = analogValue; // analogMax is now the highest value that is read
+    }
+
+    // record the minimum sensor value
+    if (analogValue < analogMin) { // if the value that is read is lower than the last lowest value
+      analogMin = analogValue; // analogMin is now the lowest value that is read
+    }
+  }
+  
+
+}
+
+void loop() {
+  
+  buttonVal = digitalRead(buttonPin); // Reading the current value of the button pin (is it activated or not?)
+    analogValue = analogRead(analogPin); // Read the Analog Sensor
+     colour =  map(analogValue, analogMin, analogMax, 0, 250); // Map the incoming value. If it is near the maxium value that was calibrated, the variable colour will be assigned a number close to 250.
+
+  if (buttonVal == LOW) { // if the digital switch is activated
+    Serial.println(colour);
+    for (int i = 0 ; i < 10; i++) { // loop through all of the LED lights on the Circuit Playground and light them up.
+      CircuitPlayground.setPixelColor(i,colour, colour, 150); // Aqua colour
+    }
+
+  } else { // if the digital switch is not activated, turn the LED lights off. 
+    CircuitPlayground.clearPixels();
+  }
+}
