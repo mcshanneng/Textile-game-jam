@@ -1,0 +1,99 @@
+//Variable Declarations for the image
+let img;
+let compImg;
+let lightImg;
+let carImg;
+let hoodImg;
+let tubImg;
+
+// variable declarations for the hints
+let lightHint ="Oooh pretty Lights!! I think my friend could get their console to be same colour";
+let compHint ="Ah, It's an old computer.There's something written on it.'Everything leads to the yellow'. Wonder if that can help my friend"
+let carHint ="Wonder what an old Earth car is doing here. It's a long way from home"
+let hoodHint ="Gah!! Some Space Racoons™ have made their Space Home™ here! "
+let tubHint ="Is- is that a bath tub?? Talk about recycling. I guess life always finds a way "
+
+
+
+function setup() {
+  createCanvas(1920, 1080);// canvas size (has to be fixed size because images are mapped to specific areas pf the canvas)
+  
+  //varaible declarations pt2
+  img = loadImage('Assets/Junkyard_A.png'); // Load the image
+  lightImg = loadImage('Assets/Junkyard_B.png')
+  compImg = loadImage('Assets/Junkyard_C.png')
+  carImg=loadImage('Assets/Junkyard_D.png')
+  hoodImg=loadImage('Assets/Junkyard_E.png')
+  tubImg=loadImage('Assets/Junkyard_F.png')
+}
+
+
+function draw() {
+  //Mouse Location variables
+ var mx= mouseX;
+ var my=mouseY;
+  
+  image(img, 0, 0,1920, 1080);
+
+// computer hint
+  if(mx>420 && mx<800 && my>810 && my<980){ //if the mouse is within these parameters, do the following:
+  image(compImg, 0, 0,1920, 1080);//Load the image
+  fill(200);
+  rect(550,100,800,200,20);// load a grey rectangle
+  fill(0);
+  textSize(30);
+  text(compHint, 600, 120, 720, 180);// load the hint
+  }
+// light hint
+  if (mx>1030 && mx<1285 && my>480 && my<845){
+  image(lightImg, 0, 0,1920, 1080);
+     fill(200);
+  rect(550,100,800,200,20);
+  fill(0);
+  textSize(30);
+  text(lightHint, 600, 120, 720, 180);
+      }
+// car Hint
+    if (mx>0 && mx<320 && my>500 && my<810){
+  image(carImg, 0, 0,1920, 1080);
+     fill(200);
+  rect(550,100,800,200,20);
+  fill(0);
+  textSize(30);
+  text(carHint, 600, 120, 720, 180);
+    }
+  // hood Hint (although the hood hint overlaps with the car location, hood will take priority as it is loaded over the car hint)
+    if (mx>0 && mx<330 && my>550 && my<640){
+  image(hoodImg, 0, 0,1920, 1080);
+     fill(200);
+  rect(550,100,800,200,20);
+  fill(0);
+  textSize(30);
+  text(hoodHint, 600, 120, 720, 180);
+    }
+ // Tub Hint
+    if (mx>1520 && my>265 && my<680){
+  image(tubImg, 0, 0,1920, 1080);
+     fill(200);
+  rect(550,100,800,200,20);
+  fill(0);
+  textSize(30);
+  text(tubHint, 600, 120, 720, 180);
+    }
+  /*
+//Mouse Numbers to check Locations  (used only whe constructing)
+  if(mouseX>=width/2){
+      fill(74,33,83);
+  }
+  else
+  {
+      fill(249,70,32);
+  }
+  ellipse(mouseX,mouseY,10,10);
+  line(0,mouseY,width,mouseY);
+  line(mouseX,0,mouseX,height);
+  fill(0);
+  text('('+mx+','+my+')',mouseX,mouseY-25);
+  //
+ */
+}
