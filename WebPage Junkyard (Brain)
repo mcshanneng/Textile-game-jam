@@ -1,0 +1,145 @@
+//Variable Declarations for the Images
+let img;
+let brainImg;
+let takeoutImg;
+let vhsTapeImg;
+let vhsPlyrImg;
+let cablesImg;
+let jarImg;
+let bottleImg;
+let tape1;
+let tape2;
+
+//Variable Declarations for the hints
+let brainHint ="Your poor friend’s brain! Despite their body being blown to pieces in the accident, their brain is pretty much in tack. It’s looking a bit dry though..."
+let bottleHint ="A bottle of water from 2004. Crazy how long these things stay around for.";
+let cableHint ="Electronic part for connecting circuits together";
+let takeOutHint="Take-out food container with weird electronic parts inside. The glass jar seems to be permanently stuck on top of it! The electronics seem to be working, I just need to connect something to it. ";
+let jarHint="A mason-style glass jar you might find in a pantry";
+let vhsHint= "Some video tape media from the 20th century. Looks like someone was a science fiction fan! "
+let tape2Hint="Tape 2: The Man With Two Brains An American comedy starring Steve Martin."
+let vhsPlyrHint="Oh look! An old VHS Player. huh? Someone's left a tape in it"
+let tape1Hint="Tape 1: Dr Who, The Brain of Moribus An episode from the original Dr Who tv show."
+
+
+
+function setup() {
+  createCanvas(1920, 1080);// canvas size (has to be fixed size because images are mapped to specific areas pf the canvas)
+  
+  //Variable declarations pt.2 
+  img = loadImage('Assets/Junkyard2.png'); // Load the image
+  brainImg = loadImage('Assets/Junkyard2_B.png')
+  takeoutImg = loadImage('Assets/Junkyard2_Takeout.png')
+  vhsTapeImg = loadImage('Assets/Junkyard2_VHS Tape.png');
+  vhsPlyrImg = loadImage('Assets/Junkyard2_VHS Player.png')
+  cablesImg = loadImage('Assets/Junkyard2_Cables.png')
+  jarImg = loadImage('Assets/Junkyard2_Jar.png')
+  bottleImg = loadImage('Assets/Junkyard2_Bottle.png')
+  tape1Img = loadImage('Assets/DrWho.png')
+  tape2Img = loadImage('Assets/man2brains.png')
+}
+
+function draw() {
+// Mouse Location Variables
+ var mx= mouseX;
+ var my=mouseY;
+  // Displays the image at its actual size at point (0,0)
+  image(img, 0, 0,1920, 1080);
+
+// brain hint
+  if(mx>1195 && mx<1480 && my>430 && my<690){ //if the mouse is within these parameters, do the following:
+  image(brainImg, 0, 0,1920, 1080); //Load the image
+  fill(200);
+  rect(550,100,800,200,20); // draw a grey rectangle
+  fill(0);
+  textSize(30);
+  text(brainHint, 600, 120, 720, 180);// Put the hint over the rectangle
+  }
+
+// bottle hint
+  if (mx>420 && mx<570 && my>750 && my<840){
+  image(bottleImg, 0, 0,1920, 1080);
+     fill(200);
+  rect(550,100,800,200,20);
+  fill(0);
+  textSize(30);
+  text(bottleHint, 600, 120, 720, 180);
+      }
+  
+  // Cables hint
+  if (mx>1130 && mx<1495 && my>1000 && my<1080){
+  image(cablesImg, 0, 0,1920, 1080);
+     fill(200);
+  rect(550,100,800,200,20);
+  fill(0);
+  textSize(30);
+  text(cableHint, 600, 120, 720, 180);
+  }
+    
+  // Takeout hint
+  if (mx>0 && mx<365 && my>810 && my<1080){
+  image(takeoutImg, 0, 0,1920, 1080);
+  fill(200);
+  rect(550,100,800,200,20);
+  fill(0);
+  textSize(30);
+  text(takeOutHint, 600, 120, 720, 180);
+      }
+    
+  // Jar hint
+  if (mx>480 && mx<660 && my>890 && my<1050){
+  image(jarImg, 0, 0,1920, 1080);
+  fill(200);
+  rect(550,100,800,200,20);
+  fill(0);
+  textSize(30);
+  text(jarHint, 600, 120, 720, 180);
+  }
+    // VHS hint
+  if (mx>1640 && mx<1805 && my>975 && my<1080){
+  image(vhsTapeImg, 0, 0,1920, 1080);
+  image(tape2Img,670,350,600,420);
+  fill(200);
+  rect(550,100,800,200,20);
+  fill(0);
+  textSize(30);
+  text(vhsHint, 600, 120, 720, 180);
+  
+  fill(200);
+  rect(680,800,580,100,20);
+  fill(0);
+  text(tape2Hint,700, 820, 560, 80);
+  }
+   // VHS Player hint
+  if (mx>1400 && mx<1570 && my>845 && my<950){
+  image(vhsPlyrImg, 0, 0,1920, 1080);
+  image(tape1Img,720,350,474,362);
+  fill(200);
+  rect(550,100,800,200,20);
+  fill(0);
+  textSize(25);
+  text(vhsPlyrHint, 600, 120, 720, 180);
+  
+  fill(200);
+  rect(680,800,580,100,20);
+  fill(0);
+  text(tape1Hint,700, 820, 560, 80);
+  }
+  
+/*
+//Mouse Numbers to check Locations for the parameters (used only whe constructing)
+  if(mouseX>=width/2){
+      fill(74,33,83);
+  }
+  else
+  {
+      fill(249,70,32);
+  }
+  ellipse(mouseX,mouseY,10,10);
+  line(0,mouseY,width,mouseY);
+  line(mouseX,0,mouseX,height);
+  fill(0);
+  text('('+mx+','+my+')',mouseX,mouseY-25);
+  //
+  */
+}
