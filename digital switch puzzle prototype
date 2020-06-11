@@ -1,5 +1,5 @@
 /*******
-Code for the Textile Game Controller Jam by Social Body Lab, Dames Making Game, & Game Play Lab. 
+Apated from example provided by DMG by Social Body Lab, Dames Making Game, & Game Play Lab.for Textile Comtroller Game Jam
 May 30, 2020 - June 6, 2020. 
 This is code follows along the "How to Make an E-Textile Digital Switch" here: https://youtu.be/OHO1NxV-ebw 
 The code contains 1 digital switch which lights up the LED ring when activated. 
@@ -24,8 +24,8 @@ void setup() {
   Serial.begin(9600); // Starting the serial monitor
   CircuitPlayground.begin(); // Initiating the Circuit Playground
   pinMode(buttonPinA, INPUT_PULLUP); // Indicating the type of input for the pin  used
-  pinMode(buttonPinB, INPUT_PULLUP); // Indicating the type of input for the pin  used
-  pinMode(buttonPinC, INPUT_PULLUP); // Indicating the type of input for the pin  used
+  pinMode(buttonPinB, INPUT_PULLUP);
+  pinMode(buttonPinC, INPUT_PULLUP); 
 
 }
 
@@ -33,7 +33,8 @@ void loop() {
   stateA = digitalRead(buttonPinA); // Reading the current value of the button pin (is it activated or not?)
   stateB = digitalRead(buttonPinB);
   stateC = digitalRead(buttonPinC);
-  if (stateA == LOW&& stateB == LOW && stateC ==LOW) { // if the digital switch is activated
+  
+  if (stateA == LOW&& stateB == LOW && stateC ==LOW) { // if all the digital switches are activated
     for (int i = 0 ; i < 10; i++) { // loop through all of the LED lights on the Circuit Playground and light them up.
       CircuitPlayground.setPixelColor(i, 255, 0, 200); // Aqua colour
     }
